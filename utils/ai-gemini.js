@@ -10,10 +10,7 @@ export async function getDreamInterpretation(dreamText) {
     throw new Error('Server misconfigured: GEMINI_API_KEY is missing');
   }
 
-  let model = process.env.GEMINI_MODEL || 'gemini-3.8-flash';
-  if (!model || model === 'gemini-2.5-flash' || model === 'gemini-1.5-flash') {
-    model = 'gemini-3.8-flash';
-  }
+  const model = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
 
   try {
     const ai = new GoogleGenAI({ apiKey });
@@ -33,4 +30,3 @@ export async function getDreamInterpretation(dreamText) {
     throw new Error(`API error: ${error.message}`);
   }
 }
-
